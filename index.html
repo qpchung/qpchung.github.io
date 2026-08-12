@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adams — 韌體與硬體工程師</title>
+<meta name="description" content="Adams — 韌體與硬體工程師。工業自動化、嵌入式 AI、機器視覺。">
+<link rel="icon" href="./avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#0A1410;      /* 深綠防焊層 */
+    --panel:#101E18;      /* 抬升面板 */
+    --line:#1D3329;       /* 蝕刻線 */
+    --silk:#E9EFEA;       /* 絲印白 */
+    --dim:#7E948A;        /* 次級文字 */
+    --copper:#CC8C4E;     /* 銅箔／焊墊 */
+
+    --display:"Space Grotesk","Noto Sans TC",sans-serif;
+    --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--board);
+    color:var(--silk);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+    /* 極細網格，模擬 PCB 佈線層 */
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+    background-position:-1px -1px;
+  }
+
+  .shell{max-width:860px;margin:0 auto;padding:0 24px 100px;}
+
+  /* ── 頂部標示條 ─────────────────────────── */
+  .bar{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:16px;padding:18px 0;
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.16em;color:var(--dim);
+    text-transform:uppercase;
+  }
+  .bar b{color:var(--copper);font-weight:500;}
+
+  /* ── 主視覺 ─────────────────────────────── */
+  .hero{
+    display:grid;
+    grid-template-columns:196px 1fr;
+    gap:44px;align-items:center;
+    padding:64px 0 60px;
+  }
+
+  /* 頭像＝焊墊上的元件 */
+  .pad{position:relative;width:196px;height:196px;}
+
+  .pad svg{
+    position:absolute;inset:-42px;
+    width:calc(100% + 84px);height:calc(100% + 84px);
+    overflow:visible;pointer-events:none;
+  }
+  .pad svg path{
+    fill:none;stroke:var(--copper);stroke-width:1.1;opacity:.5;
+    stroke-dasharray:220;stroke-dashoffset:220;
+    animation:trace 1.5s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  .pad svg path:nth-of-type(2){animation-delay:.12s;}
+  .pad svg path:nth-of-type(3){animation-delay:.24s;}
+  .pad svg path:nth-of-type(4){animation-delay:.36s;}
+  @keyframes trace{to{stroke-dashoffset:0;}}
+
+  .pad img{
+    position:relative;z-index:1;
+    width:100%;height:100%;display:block;
+    border-radius:6px;
+    border:1px solid var(--line);
+  }
+
+  /* 絲印角標 */
+  .pad::before,.pad::after{
+    content:"";position:absolute;z-index:2;
+    width:16px;height:16px;border:1.5px solid var(--copper);
+  }
+  .pad::before{top:-7px;left:-7px;border-right:none;border-bottom:none;}
+  .pad::after{bottom:-7px;right:-7px;border-left:none;border-top:none;}
+
+  /* pin 1 標記 */
+  .pin1{
+    position:absolute;z-index:3;top:9px;left:9px;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--copper);
+    box-shadow:0 0 0 3px rgba(204,140,78,.2);
+  }
+
+  .id{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;
+    color:var(--copper);text-transform:uppercase;margin:0 0 14px;
+  }
+
+  h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(42px,8vw,64px);line-height:1;
+    letter-spacing:-.02em;margin:0 0 12px;
+  }
+
+  .role{
+    font-size:17px;color:var(--silk);margin:0 0 18px;font-weight:500;
+  }
+  .role em{font-style:normal;color:var(--copper);}
+
+  .blurb{color:var(--dim);margin:0;max-width:44ch;font-size:15.5px;}
+
+  /* ── 區段 ───────────────────────────────── */
+  section{padding-top:56px;}
+
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;
+    padding-bottom:12px;margin-bottom:26px;
+    border-bottom:1px solid var(--line);
+  }
+  .sec-num{
+    font-family:var(--mono);font-size:11.5px;font-weight:700;
+    color:var(--copper);letter-spacing:.1em;
+  }
+  .sec-head h2{
+    font-family:var(--mono);font-size:12.5px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--dim);margin:0;
+  }
+  .sec-head span.zh{
+    font-family:var(--body);font-size:15px;color:var(--silk);
+    margin-left:auto;font-weight:500;letter-spacing:0;
+  }
+
+  /* 特色列表 */
+  ul.feat{list-style:none;margin:0;padding:0;}
+  ul.feat li{
+    position:relative;padding-left:26px;margin-bottom:13px;
+    font-size:15.5px;
+  }
+  ul.feat li::before{
+    content:"";position:absolute;left:0;top:12px;
+    width:11px;height:1.5px;background:var(--copper);
+  }
+  ul.feat b{color:var(--silk);font-weight:700;}
+  ul.feat span{color:var(--dim);}
+
+  /* 規格表 */
+  .spec{width:100%;border-collapse:collapse;}
+  .spec tr{border-bottom:1px solid var(--line);}
+  .spec tr:last-child{border-bottom:none;}
+  .spec th{
+    text-align:left;vertical-align:top;
+    padding:14px 20px 14px 0;white-space:nowrap;
+    font-family:var(--mono);font-size:11.5px;font-weight:500;
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--dim);width:1%;
+  }
+  .spec td{padding:14px 0;font-size:15px;}
+
+  /* 專案卡 */
+  .apps{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+  .app{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;padding:20px 22px;
+  }
+  .app .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+    color:var(--copper);text-transform:uppercase;
+    display:block;margin-bottom:9px;
+  }
+  .app h3{
+    font-family:var(--display);font-size:17px;font-weight:500;
+    margin:0 0 7px;letter-spacing:-.01em;
+  }
+  .app p{margin:0;font-size:14px;color:var(--dim);line-height:1.7;}
+
+  /* 文件連結 */
+  .docs{list-style:none;margin:0;padding:0;}
+  .docs li{margin-bottom:10px;}
+
+  a.doc{
+    display:flex;align-items:center;gap:16px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;padding:16px 20px;
+    text-decoration:none;color:inherit;
+    transition:border-color .18s ease;
+  }
+  a.doc:hover,a.doc:focus-visible{border-color:var(--copper);}
+  a.doc:focus-visible{outline:2px solid var(--copper);outline-offset:3px;}
+
+  a.doc .nm{flex:1 1 auto;font-size:15px;font-weight:500;}
+  a.doc .kind{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    color:var(--dim);text-transform:uppercase;
+  }
+  a.doc .go{color:var(--copper);font-size:15px;}
+
+  /* 聯絡 */
+  .contact{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  a.chip{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;
+    color:var(--silk);text-decoration:none;
+    border:1px solid var(--line);border-radius:999px;
+    padding:9px 18px;
+    transition:border-color .18s ease,color .18s ease;
+  }
+  a.chip:hover,a.chip:focus-visible{border-color:var(--copper);color:var(--copper);}
+  a.chip:focus-visible{outline:2px solid var(--copper);outline-offset:3px;}
+
+  footer{
+    margin-top:64px;padding-top:22px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;
+    letter-spacing:.14em;color:var(--dim);
+    text-transform:uppercase;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+
+  /* ── 響應式 ─────────────────────────────── */
+  @media (max-width:680px){
+    .shell{padding:0 20px 76px;}
+    .hero{
+      grid-template-columns:1fr;gap:32px;
+      padding:44px 0 44px;
+    }
+    .pad{width:140px;height:140px;}
+    .apps{grid-template-columns:1fr;}
+    .sec-head{flex-wrap:wrap;gap:10px;}
+    .sec-head span.zh{margin-left:0;width:100%;}
+    .spec th{
+      display:block;padding:14px 0 2px;width:auto;
+    }
+    .spec td{display:block;padding:0 0 14px;}
+    body{background-size:32px 32px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .pad svg path{animation:none;stroke-dashoffset:0;}
+    a.doc,a.chip{transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- 頂部標示條：模擬料號標頭 -->
+  <div class="bar">
+    <span>qpchung.github.io</span>
+    <span>Rev <b>1.0</b> · 2026</span>
+  </div>
+
+  <!-- ── 主視覺 ── -->
+  <div class="hero">
+    <div class="pad">
+      <!-- 由元件向外延伸的銅箔走線 -->
+      <svg viewBox="0 0 280 280" aria-hidden="true">
+        <path d="M42 96 L4 96 L4 40"/>
+        <path d="M238 96 L276 96 L276 30"/>
+        <path d="M42 184 L4 184 L4 248"/>
+        <path d="M238 184 L276 184 L276 252"/>
+      </svg>
+      <span class="pin1" aria-hidden="true"></span>
+      <img src="./avatar.jpg" alt="Adams 的頭像">
+    </div>
+
+    <div>
+      <p class="id">Firmware · Hardware Engineer</p>
+      <h1>Adams</h1>
+      <p class="role">在 <em>工業自動化</em> 與 <em>嵌入式 AI</em> 之間，把電路與程式接起來</p>
+      <p class="blurb">從暫存器設定到人機介面，習慣把整條路徑走完 —— 因為問題通常就藏在交界處。</p>
+    </div>
+  </div>
+
+  <!-- ── §1 專長 ── -->
+  <section id="about">
+    <div class="sec-head">
+      <span class="sec-num">§1</span>
+      <h2>Features</h2>
+      <span class="zh">專長領域</span>
+    </div>
+    <ul class="feat">
+      <li><b>嵌入式韌體開發</b><span> —— MCU 底層驅動、周邊控制與即時系統，熟悉 SPI／UART／I²C 等介面除錯</span></li>
+      <li><b>邊緣端 AI 部署</b><span> —— 將神經網路模型壓進 MCU，處理量化、記憶體配置與推論效能調校</span></li>
+      <li><b>機器視覺與自動光學檢測</b><span> —— 影像前處理、瑕疵判定流程，以及資料標註工具的建置</span></li>
+      <li><b>工業控制系統整合</b><span> —— 多軸運動控制、設備通訊，以及產線端的操作介面開發</span></li>
+    </ul>
+  </section>
+
+  <!-- ── §2 技術棧 ── -->
+  <section id="stack">
+    <div class="sec-head">
+      <span class="sec-num">§2</span>
+      <h2>Specifications</h2>
+      <span class="zh">技術棧</span>
+    </div>
+    <table class="spec">
+      <tr>
+        <th>Firmware</th>
+        <td>C / C++、RTOS、暫存器層級驅動開發</td>
+      </tr>
+      <tr>
+        <th>Desktop</th>
+        <td>C# 、影像處理與設備端工具程式</td>
+      </tr>
+      <tr>
+        <th>Scripting</th>
+        <td>Python、資料處理、模型訓練與自動化流程</td>
+      </tr>
+      <tr>
+        <th>Mobile</th>
+        <td>Android 應用程式開發（個人專案）</td>
+      </tr>
+      <tr>
+        <th>Domain</th>
+        <td>工業自動化、嵌入式 AI、電腦視覺、運動控制</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ── §3 專案 ── -->
+  <section id="projects">
+    <div class="sec-head">
+      <span class="sec-num">§3</span>
+      <h2>Applications</h2>
+      <span class="zh">專案</span>
+    </div>
+    <div class="apps">
+
+      <div class="app">
+        <span class="tag">Embedded AI</span>
+        <h3>MCU 端神經網路部署</h3>
+        <p>在資源受限的微控制器上完成模型推論，涵蓋開機架構、記憶體規劃與相機模組整合。</p>
+      </div>
+
+      <div class="app">
+        <span class="tag">Machine Vision</span>
+        <h3>自動光學檢測系統</h3>
+        <p>影像擷取、瑕疵判定與參數調校介面，將檢測流程整合進產線作業。</p>
+      </div>
+
+      <div class="app">
+        <span class="tag">Motion Control</span>
+        <h3>多軸控制系統</h3>
+        <p>機構運動軌跡規劃與設備通訊整合，搭配操作端的控制介面。</p>
+      </div>
+
+      <div class="app">
+        <span class="tag">Driver</span>
+        <h3>LED 矩陣顯示驅動</h3>
+        <p>多顆驅動 IC 串接的 SPI 陣列控制，處理像素映射與動畫更新流程。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── §4 App 與文件 ── -->
+  <!--
+  <section id="apps">
+    <div class="sec-head">
+      <span class="sec-num">§4</span>
+      <h2>Documents</h2>
+      <span class="zh">應用程式與隱私權政策</span>
+    </div>
+    <ul class="docs">
+
+      <li>
+        <a class="doc" href="./weight-tracker/">
+          <span class="nm">體重飲食記錄器</span>
+          <span class="kind">Privacy Policy</span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+
+  <!-- ── §5 聯絡 ── -->
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">§4</span>
+      <h2>Contact</h2>
+      <span class="zh">聯絡方式</span>
+    </div>
+    <div class="contact">
+      <a class="chip" href="https://github.com/qpchung">GitHub</a>
+      <a class="chip" href="mailto:qpchung@gmail.com">Email</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Adams · Taiwan</span>
+    <span>Built with GitHub Pages</span>
+  </footer>
+
+</div>
+</body>
+</html>
