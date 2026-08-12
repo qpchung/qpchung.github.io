@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>隱私權政策 — 體重飲食記錄器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6F3;
+    --card:#FFFFFF;
+    --ink:#1B2320;
+    --ink-soft:#5E6863;
+    --rule:#DCE1DB;
+    --accent:#2F6B52;
+    --accent-soft:#E8F0EA;
+    --warn:#8A5A1E;
+    --warn-soft:#F7EFE2;
+    --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+    --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    padding:0 20px 96px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:720px;margin:0 auto;}
+
+  /* ---------- 頁首 ---------- */
+  header{padding:72px 0 40px;border-bottom:1px solid var(--rule);}
+
+  .eyebrow{
+    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin:0 0 18px;
+  }
+
+  h1{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(32px,6vw,46px);line-height:1.3;
+    margin:0 0 20px;letter-spacing:.01em;
+  }
+
+  .meta{color:var(--ink-soft);font-size:14px;margin:0;}
+  .meta span{display:inline-block;margin-right:20px;}
+
+  /* ---------- 摘要卡 ---------- */
+  .summary{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:28px 30px;
+    margin:40px 0 8px;
+  }
+
+  .summary h2{
+    font-family:var(--sans);font-size:14px;font-weight:700;
+    letter-spacing:.14em;color:var(--ink-soft);
+    margin:0 0 20px;text-transform:uppercase;
+  }
+
+  .facts{list-style:none;margin:0;padding:0;}
+
+  .facts li{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:12px 0;border-top:1px solid var(--rule);
+  }
+  .facts li:first-child{border-top:none;padding-top:0;}
+  .facts li:last-child{padding-bottom:0;}
+
+  .mark{
+    flex:0 0 auto;width:22px;height:22px;border-radius:50%;
+    display:grid;place-items:center;margin-top:5px;
+    font-size:13px;font-weight:700;line-height:1;
+  }
+  .yes{background:var(--accent-soft);color:var(--accent);}
+  .no{background:#EFEFEC;color:#8C918B;}
+
+  .facts p{margin:0;font-size:15px;}
+  .facts strong{font-weight:700;}
+
+  /* ---------- 內文 ---------- */
+  section{padding-top:48px;}
+
+  h2.sec{
+    font-family:var(--serif);font-weight:600;
+    font-size:22px;line-height:1.5;margin:0 0 16px;
+    display:flex;gap:14px;align-items:baseline;
+  }
+
+  .num{
+    font-family:var(--sans);font-size:13px;font-weight:700;
+    color:var(--accent);letter-spacing:.08em;
+    flex:0 0 auto;min-width:26px;
+  }
+
+  h3{
+    font-size:16px;font-weight:700;margin:28px 0 10px;
+    color:var(--ink);
+  }
+
+  p{margin:0 0 16px;}
+  p.lead{color:var(--ink-soft);}
+
+  ul.body{margin:0 0 16px;padding-left:0;list-style:none;}
+  ul.body li{
+    position:relative;padding-left:20px;margin-bottom:10px;
+  }
+  ul.body li::before{
+    content:"";position:absolute;left:2px;top:13px;
+    width:6px;height:1px;background:var(--accent);
+  }
+
+  .callout{
+    background:var(--card);border-left:3px solid var(--accent);
+    border-radius:0 10px 10px 0;padding:18px 22px;margin:22px 0;
+    font-size:15px;
+  }
+  .callout p:last-child{margin-bottom:0;}
+
+  code.fill{
+    background:var(--warn-soft);color:var(--warn);
+    padding:2px 7px;border-radius:5px;
+    font-family:var(--sans);font-size:.94em;font-weight:500;
+  }
+
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+
+  footer{
+    margin-top:64px;padding-top:28px;border-top:1px solid var(--rule);
+    color:var(--ink-soft);font-size:14px;
+  }
+
+  @media (max-width:520px){
+    body{padding:0 18px 72px;font-size:15px;}
+    header{padding:48px 0 32px;}
+    .summary{padding:22px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Privacy Policy</p>
+  <h1>體重飲食記錄器<br>隱私權政策</h1>
+  <p class="meta">
+    <span>生效日期：<code class="fill">2026-01-01</code></span>
+    <span>最後更新：<code class="fill">2026-01-01</code></span>
+  </p>
+</header>
+
+<!-- 摘要卡：讓使用者三秒看懂重點，也方便對照 Play Console 的 Data safety 表單 -->
+<div class="summary">
+  <h2>重點摘要</h2>
+  <ul class="facts">
+    <li>
+      <span class="mark yes">✓</span>
+      <p>你輸入的體重與飲食紀錄，<strong>只儲存在你的手機本機</strong></p>
+    </li>
+    <li>
+      <span class="mark no">✕</span>
+      <p>不需要註冊帳號，<strong>不蒐集姓名、電話或電子郵件</strong></p>
+    </li>
+    <li>
+      <span class="mark no">✕</span>
+      <p><strong>不會將你的紀錄上傳</strong>到我們或任何第三方的伺服器</p>
+    </li>
+    <li>
+      <span class="mark no">✕</span>
+      <p><strong>不販售、不分享</strong>你的個人資料給任何對象</p>
+    </li>
+    <li>
+      <span class="mark yes">✓</span>
+      <p>你可以隨時<strong>匯出或刪除</strong>全部紀錄</p>
+    </li>
+  </ul>
+</div>
+
+<section>
+  <h2 class="sec"><span class="num">01</span>關於本政策</h2>
+  <p class="lead">本隱私權政策說明「體重飲食記錄器」（以下稱「本應用程式」）如何處理你的資料。本應用程式由 <code class="fill">開發者名稱</code>（以下稱「我們」）開發與維護。</p>
+  <p>當你下載並使用本應用程式時，即表示你已閱讀並同意本政策的內容。若你不同意其中任何條款，請停止使用本應用程式。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">02</span>我們處理哪些資料</h2>
+
+  <h3>你主動輸入的資料</h3>
+  <p>為了提供記錄功能，本應用程式會保存你自行輸入的以下內容：</p>
+  <ul class="body">
+    <li>體重數值與對應的記錄日期</li>
+    <li>飲食內容的文字描述、餐別分類與時間</li>
+    <li>你選擇附加在紀錄上的照片</li>
+    <li>你設定的提醒時間與單位偏好等使用設定</li>
+  </ul>
+
+  <div class="callout">
+    <p>上述資料全部儲存在你手機的本機空間中。我們無法讀取、無法接收，也無法還原這些內容。</p>
+  </div>
+
+  <h3>我們不會蒐集的資料</h3>
+  <p>本應用程式不會蒐集你的姓名、電子郵件、電話號碼、地址、精確位置、聯絡人清單、通話紀錄、簡訊內容或任何裝置識別碼。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">03</span>資料的用途</h2>
+  <p>你輸入的資料僅在你的裝置上用於以下目的：</p>
+  <ul class="body">
+    <li>顯示你的歷史紀錄與月曆檢視</li>
+    <li>計算並繪製體重的變化趨勢圖表</li>
+    <li>在你設定的時間發出記錄提醒</li>
+    <li>產生你主動要求的匯出檔案</li>
+  </ul>
+  <p>這些處理全部在裝置端完成，不涉及任何網路傳輸。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">04</span>應用程式權限說明</h2>
+  <p>本應用程式僅在必要時要求下列權限，你可以隨時在系統設定中撤銷：</p>
+  <ul class="body">
+    <li><strong>通知</strong>　用於發送你自行設定的每日記錄提醒。拒絕後仍可正常使用其他功能。</li>
+    <li><strong>相機</strong>　僅在你選擇為飲食紀錄拍照時啟用。我們不會在背景存取相機。</li>
+    <li><strong>相片與媒體</strong>　僅在你選擇從相簿挑選照片，或匯出資料檔案時使用。本應用程式不會掃描或讀取你相簿中的其他內容。</li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">05</span>資料的儲存與保留</h2>
+  <p>所有紀錄儲存於你裝置的應用程式專屬空間內，由 Android 系統的沙箱機制保護，其他應用程式無法直接讀取。</p>
+  <p>資料會保留到你主動刪除為止。當你在應用程式內清除紀錄，或將本應用程式從裝置解除安裝時，本機資料即一併移除且無法復原。</p>
+  <div class="callout">
+    <p>請注意：若你的裝置啟用了系統層級的自動備份功能，Android 可能會將應用程式資料備份至你自己的 Google 帳戶。該備份由 Google 管理，我們無權存取。你可在裝置的「設定 → Google → 備份」中關閉此功能。</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">06</span>資料分享與第三方</h2>
+  <p>我們不會將你的任何資料出售、出租、交換或提供給第三方。本應用程式不含廣告聯播網、行為分析或使用者追蹤等第三方元件。</p>
+  <p>唯一的例外是法律要求：若依主管機關或司法機關之合法命令必須提供資料，我們將依法配合。惟因資料僅存於你的裝置，我們實際上並無可供提供的內容。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">07</span>你的權利</h2>
+  <p>由於資料完全由你自己保管，你隨時可以行使以下權利：</p>
+  <ul class="body">
+    <li><strong>查閱</strong>　在應用程式內檢視所有已儲存的紀錄</li>
+    <li><strong>更正</strong>　編輯或修改任何一筆既有紀錄</li>
+    <li><strong>刪除</strong>　刪除個別紀錄，或一次清除全部資料</li>
+    <li><strong>取得副本</strong>　透過匯出功能取得 CSV 格式的完整紀錄</li>
+  </ul>
+  <p>若你位於歐洲經濟區、英國或其他適用資料保護法規的地區，上述功能已足以讓你自行完成相關請求；如仍有疑問，歡迎透過下方管道與我們聯繫。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">08</span>資料安全</h2>
+  <p>我們依賴 Android 作業系統提供的應用程式沙箱與檔案權限機制保護你的資料。建議你同時為裝置設定螢幕鎖定，以避免他人在取得你的手機後直接開啟本應用程式。</p>
+  <p>請留意，當你主動匯出資料檔案並分享給他人或上傳至其他服務時，該檔案的後續安全已不在本應用程式的保護範圍內。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">09</span>兒童隱私</h2>
+  <p>本應用程式並非針對 13 歲以下兒童設計，我們也不會刻意蒐集兒童的個人資料。若你是家長或監護人，並發現孩子在未經同意的情況下使用本應用程式，可直接於裝置上刪除應用程式以清除全部本機紀錄。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">10</span>健康資訊免責聲明</h2>
+  <p>本應用程式為個人生活記錄工具，所呈現的數據與圖表僅供個人參考，不構成醫療診斷、治療建議或專業營養指導。任何健康相關決定，請諮詢醫師、營養師或其他合格的醫療專業人員。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">11</span>政策的變更</h2>
+  <p>我們可能因功能調整或法規要求而修訂本政策。修訂後的版本將發布於本頁面，並更新頁首的「最後更新」日期。若變更涉及資料處理方式的重大調整，我們會在應用程式內另行告知。</p>
+  <p>建議你不定期回到本頁確認最新內容。</p>
+</section>
+
+<section>
+  <h2 class="sec"><span class="num">12</span>聯絡我們</h2>
+  <p>對本政策或資料處理方式有任何疑問、意見或請求，歡迎聯繫：</p>
+  <ul class="body">
+    <li>電子郵件：<a href="mailto:your@email.com"><code class="fill">your@email.com</code></a></li>
+    <li>開發者：<code class="fill">開發者名稱</code></li>
+  </ul>
+  <p>我們會在收到來信後盡快回覆。</p>
+</section>
+
+<footer>
+  <p>本隱私權政策適用於 Google Play 上架之「體重飲食記錄器」Android 應用程式。</p>
+</footer>
+
+</div>
+
+
+<!--
+═══════════════════════════════════════════════════════════════
+  以下為「選用區塊」，預設不會顯示在網頁上。
+  請依你 App 實際使用的第三方服務，把需要的段落剪下，
+  貼到上方對應的 <section> 之後，並重新編號。
+  沒有用到的直接留在註解裡或刪除即可。
+═══════════════════════════════════════════════════════════════
+
+
+────────── 選用 A：有使用 Google AdMob 廣告 ──────────
+
+<section>
+  <h2 class="sec"><span class="num">06</span>廣告服務</h2>
+  <p>本應用程式使用 Google AdMob 顯示廣告以維持營運。AdMob 由 Google LLC 提供，可能會蒐集你的廣告識別碼（Advertising ID）、概略地理位置、裝置型號與應用程式互動資料，用於投放與衡量廣告成效。</p>
+  <p>這些資料由 Google 依其自身政策處理，我們無法直接取得可識別你身分的內容。你可在裝置的「設定 → Google → 廣告」中重設或刪除廣告識別碼，並選擇關閉廣告個人化。</p>
+  <p>Google 的隱私權政策：<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+  <p>How Google uses information：<a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a></p>
+</section>
+
+
+────────── 選用 B：有使用 Firebase Analytics / Crashlytics ──────────
+
+<section>
+  <h2 class="sec"><span class="num">06</span>使用分析與當機回報</h2>
+  <p>為了了解功能使用狀況並修正錯誤，本應用程式整合了 Google Firebase 提供的下列服務：</p>
+  <ul class="body">
+    <li><strong>Google Analytics for Firebase</strong>　蒐集匿名的功能使用次數、畫面停留時間、裝置型號與作業系統版本等統計資料。</li>
+    <li><strong>Firebase Crashlytics</strong>　在應用程式異常結束時，回報當機堆疊、發生時間與裝置狀態，以協助我們定位問題。</li>
+  </ul>
+  <p>這些資料以彙總與匿名的形式呈現，不包含你輸入的體重或飲食內容，我們也無法藉此識別個別使用者的身分。</p>
+  <p>Firebase 的資料處理說明：<a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
+</section>
+
+
+────────── 選用 C：有提供雲端備份或帳號登入 ──────────
+
+<section>
+  <h2 class="sec"><span class="num">06</span>雲端備份</h2>
+  <p>本應用程式提供選用的雲端備份功能。此功能<strong>預設為關閉</strong>，僅在你主動啟用並完成登入後才會運作。</p>
+  <p>啟用後，你的體重與飲食紀錄會加密後上傳至 <code class="fill">服務名稱，例如 Google Drive 應用程式資料夾</code>，以便你在更換裝置時還原。傳輸過程採用 HTTPS 加密。</p>
+  <p>你可以隨時在應用程式設定中關閉此功能並刪除雲端備份。刪除後，備份內容將於 <code class="fill">天數</code> 日內自伺服器永久移除。</p>
+</section>
+
+
+═══════════════════════════════════════════════════════════════
+  需要你替換的欄位（頁面中以底色標示的 code.fill）：
+    ・生效日期 / 最後更新日期
+    ・開發者名稱（需與 Play Console 上的開發者名稱一致）
+    ・your@email.com（需為可實際收信的信箱）
+  全部替換完成後，記得把 code.fill 的標記樣式移除或保留皆可，
+  但務必確認頁面上不再出現任何未填的佔位文字。
+═══════════════════════════════════════════════════════════════
+-->
+
+</body>
+</html>
